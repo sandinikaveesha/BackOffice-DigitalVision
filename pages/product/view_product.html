@@ -19,11 +19,17 @@
     td{
       align-items: center;
     }
+    .show{
+      display: block;
+    }
+    .hide{
+      display: none;
+    }
   </style>
 </head>
 <body>
 <center>
-        <div class="card" style="width: 70%;">
+        <div class="card show products" style="width: 70%;">
             <div class="card-header">
                 <h4>Product List</h4>
             </div>
@@ -44,6 +50,78 @@
                 </table>
             </div>
         </div>
+        <!-- Edit Form -->
+        <div class="card hide edit-form" style="width: 50%;">
+          <div class="card-header">
+              <h6>Edit Product Details</h6>
+          </div>
+          <div class="cord-content p-3">
+              <form class="needs-validation container" novalidate>
+                  <input type="hidden" name="" id="id">
+                  <input type="hidden" name="" id="status">
+                  <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                      <label for="validationCustom01">Product Name</label>
+                      <input type="text" class="form-control edit-product-name" id="validationCustom01" placeholder="Enter Product Name" required>
+                      <div class="invalid-feedback" id="edit-product-name-error">
+                        Please provide a valid name.
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <label for="validationCustom02 ">Brand</label>
+                      <Select class="form-control brand" id="edit-brand" required> 
+                      </Select>
+                      <div class="invalid-feedback" id="edit-brand-error">
+                        Please select a brand.
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <label for="validationCustomUsername ">Category</label>
+                      <Select class="form-control category" id="edit-category" required>
+                      </Select>
+                      <div class="invalid-feedback" id="edit-category-error">
+                        Please select a category.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                      <label for="validationCustom03">Product Description</label>
+                      <input type="text" class="form-control edit-product-decs" id="validationCustom03" placeholder="Enter Product Specification type and Keywords" required>
+                      <div class="invalid-feedback" id="edit-description-error">
+                        Please provide a valid Description.
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <label for="validationCustom04">Price</label>
+                      <input type="number" class="form-control edit-price" id="validationCustom04" placeholder="Price" required>
+                      <div class="invalid-feedback" id="edit-price-error">
+                        Please provide a valid Price.
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <label for="validationCustom05">Opening Quantity</label>
+                      <input type="number" class="form-control edit-qty" id="validationCustom05" placeholder="Quantity" required>
+                      <div class="invalid-feedback" id="edit-qty-error">
+                        Please provide a valid Quantity.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-md-3 mb-3 img-view"></div>
+                    <div class="col-md-3 mb-3">
+                      <label for="validationCustom05">Image Link </label>
+                      <input type="text" onchange="updateview()" class="form-control edit-image" id="validationCustom05" placeholder="Image Link" required>
+                      <div class="invalid-feedback" id="image-error">
+                        Please provide a image link.
+                      </div>
+                    </div>
+                  </div>
+                 
+                  <button class="btn btn-primary" type="button" id="btn-submit" onclick="update()">Edit Product</button>
+                </form>
+          </div>
+      </div>
       </center>
 
    <!--Scripting-->
@@ -55,7 +133,9 @@
    <script src="../../js/product_add_controller.js"></script>
    <script>
     $(document).ready(function(){
-      $('#products-tbl').DataTable();
+      $('#products-tbl').DataTable({
+        searching: false,
+      });
     });
 
     function stockadd(product_id, product_name) {
